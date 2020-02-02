@@ -2,6 +2,7 @@
   "name": "go-stack-desafio-01",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon --experimental-modules src/index.js"
   },
