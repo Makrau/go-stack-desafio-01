@@ -1,5 +1,5 @@
 /* eslint no-param-reassign: ["error", { "props": false }] */
-const projects = [];
+let projects = [];
 
 export const getProjects = () => projects;
 
@@ -26,7 +26,7 @@ export const updateProject = (id, title) => {
   let updatedProject = null;
 
   if (!id || !title) {
-    throw new Error('Id and title cannot be empty');
+    throw new Error('ID and title cannot be empty');
   }
 
   projects.forEach((project) => {
@@ -37,6 +37,17 @@ export const updateProject = (id, title) => {
   });
 
   return updatedProject;
+};
+
+export const deleteProject = (id) => {
+  const initialLength = projects.length;
+  if (!id) {
+    throw new Error('ID cannot be empty');
+  }
+
+  projects = projects.filter((project) => project.id !== id);
+
+  return initialLength !== projects.length;
 };
 
 

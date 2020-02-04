@@ -7,5 +7,6 @@ const router = express.Router();
 router.get('/projects', projectController.index);
 router.post('/projects', projectController.create);
 router.put('/projects/:id', projectMiddlewares, projectController.update);
+router.delete('/projects/:id', projectMiddlewares, projectController.remove);
 
 export default router;

@@ -1,4 +1,6 @@
-import { getProjects, createProject, updateProject } from '../models/Project.js';
+import {
+  getProjects, createProject, updateProject, deleteProject,
+} from '../models/Project.js';
 
 const index = (request, response) => {
   try {
@@ -31,4 +33,21 @@ const update = (request, response) => {
   }
 };
 
-export default { index, create, update };
+const remove = (request, response) => {
+  try {
+    const { id } = request.params;
+    const projectRemoved = deleteProject(id);
+
+    if (!projectRemoved) {
+      return response.status(400).json({ error: 'Unable to remove project' });
+    }
+
+    return response.json({ message: 'Project successfully removed' });
+  } catch (error) {
+    return response.status(400).json(error.message);
+  }
+};
+
+export default {
+  index, create, update, remove,
+};
