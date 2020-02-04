@@ -1,4 +1,4 @@
-import { getProjects, createProject } from '../models/Project.js';
+import { getProjects, createProject, updateProject } from '../models/Project.js';
 
 const index = (request, response) => {
   try {
@@ -19,4 +19,16 @@ const create = (request, response) => {
   }
 };
 
-export default { index, create };
+const update = (request, response) => {
+  try {
+    const { title } = request.body;
+    const { id } = request.params;
+    const updatedProject = updateProject(id, title);
+
+    return response.json(updatedProject);
+  } catch (error) {
+    return response.status(400).json(error.message);
+  }
+};
+
+export default { index, create, update };
